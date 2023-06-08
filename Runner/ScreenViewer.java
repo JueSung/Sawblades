@@ -23,7 +23,7 @@ public class ScreenViewer
         // create and configure the frame (window) for the program
         JFrame frame = new JFrame();
         
-        frame.setSize(500 /* x */, 425 /* y */); //changes window size
+        frame.setSize((int)(360*1.2) /* x */, (int)(640*1.2) /* y */); //changes window size
         frame.setTitle("Cityscape");
         frame.setBackground(Color.red);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -36,7 +36,7 @@ public class ScreenViewer
         ScreenComponent component = new ScreenComponent();
         
         
-        LineUp row = new LineUp();
+        Runner row = new Runner();
         //frame.add(component);
         frame.add(row);
         
