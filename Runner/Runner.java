@@ -20,9 +20,6 @@ public class Runner extends JComponent //implements Runnable
 
     private Car c1;
 
-    //-----------------------------------------------------------------
-    //  Creates several stick figures with varying characteristics.
-    //-----------------------------------------------------------------
     public Runner () //init in applet is like constructor; runs only once
     {                   //Different than start.
         //int h1,h2,h3,h4;  // heights of stick figures
