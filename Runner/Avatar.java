@@ -28,6 +28,10 @@ public class Avatar extends JComponent implements Runnable
         draw(g2);
     }
     
+    public boolean isOnGround(){
+        return y==YLOW;
+    }
+    
     public void draw(Graphics2D page){
         System.out.println(x);
         //hitbox

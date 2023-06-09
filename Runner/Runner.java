@@ -21,12 +21,14 @@ public class Runner extends JComponent //implements Runnable
     //private Car c1;
     private WorkingScreen screen;
     private Avatar you;
+    private Sawblade s1,s2,s3,s4,s5;
 
     public Runner () //init in applet is like constructor; runs only once
     {
         //c1 = new Car(300,true,Color.blue,100);
         screen = new WorkingScreen(Color.red,new Color(255,225,225));
         you = new Avatar();
+        s1 = new Sawblade();
 
         //Thread tc1 = new Thread(c1);
         //tc1.start();
@@ -34,6 +36,8 @@ public class Runner extends JComponent //implements Runnable
         tWC.start();
         Thread tY = new Thread(you);
         tY.start();
+        Thread tS1 = new Thread(s1);
+        tS1.start();
     }
 
     //-----------------------------------------------------------------
@@ -52,6 +56,7 @@ public class Runner extends JComponent //implements Runnable
         //page = this.page;
         
         //c1.setTime(time);
+        s1.setTime(time);
         
         
         //c1.draw(page);
