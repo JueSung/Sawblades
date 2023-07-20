@@ -53,7 +53,6 @@ public class IsKeyPressed {
 
                     case KeyEvent.KEY_RELEASED:
                         if (ke.getKeyCode() == KeyEvent.VK_A) {
-                            System.out.println(0);
                             leftPressed = false;
                         }
                         if (ke.getKeyCode() == KeyEvent.VK_D) {

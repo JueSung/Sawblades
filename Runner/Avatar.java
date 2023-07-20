@@ -8,13 +8,14 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import javax.swing.JComponent;
 import java.util.Arrays;
-public class Avatar extends JComponent implements Runnable
+public class Avatar extends JComponent implements Runnable, BoxObject
 {
     private int time;
     private final int YLOW = (int)(640*1.2-(640*1.2-640)/2-15);
     private int x = (int)(360*1.2/2), y=YLOW;
     private final int XLOW = (int)((360*1.2-360)/2+15);
     private final int XHIGH = (int)(360*1.2-(360*1.2-360)/2-15);
+    private int[] xs = new int[4], ys = new int[4];
     public Avatar(){
         
     }
@@ -28,18 +29,50 @@ public class Avatar extends JComponent implements Runnable
         draw(g2);
     }
     
+    public boolean isInside(BoxObject o){
+        int[] xs2 = o.getxs();
+        int[] ys2 = o.getys();
+        if(xs[0]>=xs2[0]&&xs[0]<=xs2[1]||xs[1]<=xs2[1]&&xs[1]>=xs2[0])
+            if(ys[0]>=ys2[0]&&ys[0]<=ys2[2]||ys[2]<=ys2[2]&&ys[2]>=ys2[0])
+                return true;
+        
+        return false;
+    }
+    
+    public boolean isAbove(BoxObject o){
+        if(Math.abs(x-o.getX())<=5&&y<o.getY()){
+            return true;
+        }
+        return false;
+    }
+    
+    public int getX(){
+        return x;
+    }
+    
+    public int getY(){
+        return y;
+    }
+    
+    public int[] getxs(){
+        return xs;
+    }
+    
+    public int[] getys(){
+        return ys;
+    }
+    
     public boolean isOnGround(){
         return y==YLOW;
     }
     
     public void draw(Graphics2D page){
-        System.out.println(x);
         //hitbox
-        int[] xHitBox = {x-15,x+15,x+15,x-15};
-        int[] yHitBox = {y-15,y-15,y+15,y+15};
+        xs[0]=x-15;xs[1]=x+15;xs[2]=x+15;xs[3]=x-15;
+        ys[0]=y-15;ys[1]=y-15;ys[2]=y+15;ys[3]=y+15;
         Color color = Color.black;
         page.setColor(color);
-        page.drawPolygon(xHitBox,yHitBox,4);
+        page.drawPolygon(xs,ys,4);
     }
     
     public void run(){
