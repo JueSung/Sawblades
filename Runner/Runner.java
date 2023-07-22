@@ -25,6 +25,7 @@ public class Runner extends JComponent //implements Runnable
     private ArrayList<Sawblade> sawblades = new ArrayList();
     private ArrayList<Coins> coins = new ArrayList();
     private Timer timer;
+    private Score score;
     
     private boolean gameOver = false;
 
@@ -34,6 +35,7 @@ public class Runner extends JComponent //implements Runnable
         screen = new WorkingScreen(Color.red,new Color(255,225,225));
         timer = new Timer();
         you = new Avatar();
+        score = new Score();
         s1 = new Sawblade(50,0);
         s2 = new Sawblade(50,75);
         s3 = new Sawblade(35,75);
@@ -50,6 +52,8 @@ public class Runner extends JComponent //implements Runnable
         tt.start();
         Thread tY = new Thread(you);
         tY.start();
+        Thread tSC = new Thread(score);
+        tSC.start();
         Thread tS1 = new Thread(s1);
         tS1.start();
         Thread tS2 = new Thread(s2);
@@ -92,6 +96,7 @@ public class Runner extends JComponent //implements Runnable
         screen.draw(page);
         timer.draw(page);
         you.draw(page);
+        score.draw(page);
         s1.draw(page);
         s2.draw(page);
         s3.draw(page);
@@ -121,6 +126,7 @@ public class Runner extends JComponent //implements Runnable
             if(you.isInside(coins.get(i))&&coins.get(i).isInUse()){
                 coins.get(i).collected();
                 timer.increment();
+                score.increment();
                 System.out.println("COLLECTED");
             }
         }
