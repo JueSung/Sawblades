@@ -127,7 +127,6 @@ public class Runner extends JComponent //implements Runnable
                 coins.get(i).collected();
                 timer.increment();
                 score.increment();
-                System.out.println("COLLECTED");
             }
         }
 
